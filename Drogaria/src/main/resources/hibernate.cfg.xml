@@ -38,6 +38,8 @@
 		
 		<!-- Mapeamento das Entidades -->
 		<mapping class="br.com.drogaria.domain.Estado"></mapping>
+		<mapping class="br.com.drogaria.domain.Cidade"></mapping>
+		<mapping class="br.com.drogaria.domain.Fabricante"></mapping>
 		
 	</session-factory>
 
