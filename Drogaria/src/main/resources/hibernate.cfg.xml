@@ -41,6 +41,9 @@
 		<mapping class="br.com.drogaria.domain.Cidade"></mapping>
 		<mapping class="br.com.drogaria.domain.Fabricante"></mapping>
 		<mapping class="br.com.drogaria.domain.Produto"></mapping>
+		<mapping class="br.com.drogaria.domain.Pessoa"></mapping>
+		<mapping class="br.com.drogaria.domain.Cliente"></mapping>
+		<mapping class="br.com.drogaria.domain.Funcionário"></mapping>
 		
 	</session-factory>
 
