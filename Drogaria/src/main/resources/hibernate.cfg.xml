@@ -6,14 +6,16 @@
 
 <hibernate-configuration>
 
-	<!-- Toda a vez que o hibernate quizer "falar com banco, ele cria uma session" -->
 	<session-factory>
 
 		<!-- Configurações de Conexão com o Banco de Dados -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/drogaria</property>
+		<!--Configuração para corrigir o erro de time zone  -->
+		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/drogaria?useTimezone=true&amp;serverTimezone=UTC</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">root</property>
+		
+		<!-- <property name="hibernate.jdbc.time_zone">UTC</property> -->
 
 		<!-- Pool de Conexões -->
 		<property name="connection.pool_size">1</property>
@@ -21,20 +23,18 @@
 		<!-- SQL dialect -->
 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 
-		<!-- Gerenciamento do Contexto das Sessões --><!--PADRAO NÃO ALTERADO -->
+		<!-- Gerenciamento do Contexto das Sessões -->
 		<property name="current_session_context_class">thread</property>
 
-		<!-- Cache de Segundo Nível --><!--A cache de segundo nível separa os elementos mais usados e depoois 
-			os dispões em cache. Necessita de configuração adicional, por issso deixaremos 
-			desativado. -->
+		<!-- Cache de Segundo Nível -->
 		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
 
 		<!-- Mostra as SQLs Geradas -->
 		<property name="show_sql">true</property>
 
-		<!-- Cria as tabelas do banco de dados --><!--Recebe três parâmetros: create/update/validate -->
+		<!-- Cria as tabelas do banco de dados -->
 		<property name="hbm2ddl.auto">create</property>
-
+		
 	</session-factory>
 
 </hibernate-configuration>
