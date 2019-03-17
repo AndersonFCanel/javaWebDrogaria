@@ -32,8 +32,12 @@
 		<!-- Mostra as SQLs Geradas -->
 		<property name="show_sql">true</property>
 
-		<!-- Cria as tabelas do banco de dados -->
+		<!-- Cria as tabelas do banco de dados --> 
+		<!-- Pode receber parametros diferentes -->
 		<property name="hbm2ddl.auto">create</property>
+		
+		<!-- Mapeamento das Entidades -->
+		<mapping class="br.com.drogaria.domain.Estado"></mapping>
 		
 	</session-factory>
 
