@@ -6,7 +6,7 @@
 
 <hibernate-configuration>
 
-	<session-factory>
+	<session-factory> 
 
 		<!-- Configurações de Conexão com o Banco de Dados -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
