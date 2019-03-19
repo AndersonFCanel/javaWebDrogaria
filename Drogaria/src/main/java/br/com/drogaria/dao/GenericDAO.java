@@ -7,19 +7,28 @@ import br.com.drogaria.util.HibernateUtil;
 /**
  * DAO Genérico
  * Camada DAO é um padrão de projeto onde os serviços de salvar, excluir, pesquisar ficam.
+ * Como DAO's possuem métodos com funcionalidades parecidas, foi utilizado o GenericDAO.
+ * O throw erro, serve para repropagar para as camadas s uperiores ;
+ * Independentemente de ocorrer erro ou tudo funcionar perfeitamente a sessão deve ser fechada "finally {sessao.close()}".
+ * 
  * @author Anderson Canel
  * @version 1.00
  * @since Release 01 da aplicação
  */
 
 //Observações:
-//Como DAO's possuem métodos com funcionalidades parecidas, criaremos o GenericDAO.
 //Tenta (try)configurar Session, salvar e commitar, caso ocorra algo de incorreto, ele da o rollback.
-//O throw erro, serve para repropagar para as camadas superiores ;
-//NUNCA esquecer de encerra a sessão com "finally {sessao.close()}";
+
 
 
 public class GenericDAO<Entidade> {
+	/**Método para salvar informações no banco de dados.
+	 * É aberta uma sessão e então ocorre a tentativa de salvar o objeto genérico.
+	 * @author Anderson  Ferreira Canel
+	 * @param entidade
+	 * @exception RuntimeException
+	 * @return void
+	 */
 	public void salvar(Entidade entidade) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		Transaction transacao  = null;
