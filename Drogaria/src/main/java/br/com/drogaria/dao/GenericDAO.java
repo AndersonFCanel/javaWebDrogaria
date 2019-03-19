@@ -33,7 +33,6 @@ public class GenericDAO<Entidade> {
 	 * tipo Entidade somente será checkado em runtime.
 	 * 
 	 * @author Anderson Ferreira Canel
-	 * @param entidade
 	 * @exception RuntimeException
 	 * @return void
 	 */
@@ -54,9 +53,8 @@ public class GenericDAO<Entidade> {
 	}
 
 	/**
-	 * Método para salvar informações no banco de dados. É aberta uma sessão e então
-	 * ocorre a tentativa de salvar o objeto genérico.
-	 * 
+	 * Método para salvar informações no banco de dados. 
+	 * É aberta uma sessão e então ocorre a tentativa de salvar o objeto genérico.
 	 * @author Anderson Ferreira Canel
 	 * @param entidade
 	 * @exception RuntimeException
@@ -81,13 +79,12 @@ public class GenericDAO<Entidade> {
 	}
 
 	/**
-	 * Método para salvar informações no banco de dados. É aberta uma sessão e então
-	 * ocorre a tentativa de salvar o objeto genérico.
-	 * 
+	 * Método para listar informações persistidas no banco de dados.
+	 * Este método retornará uma lista de entidades.
 	 * @author Anderson Ferreira Canel
 	 * @param entidade
 	 * @exception RuntimeException
-	 * @return void
+	 * @return  List<Entidade>
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Entidade> listar() {
@@ -107,6 +104,14 @@ public class GenericDAO<Entidade> {
 
 	}
 
+	/**
+	 * Método para buscar informações persistidas no banco de dados.
+	 * Este método retornará uma única entidade. 
+	 * @author Anderson Ferreira Canel
+	 * @param entidade
+	 * @exception RuntimeException
+	 * @return Entidade
+	 */
 	@SuppressWarnings("unchecked")
 	public Entidade buscar(Long codigo) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
@@ -115,12 +120,38 @@ public class GenericDAO<Entidade> {
 			// Explicando o TRECHO abaixo:
 			// Criteria n é o critério da consulta, nesse caso tratase da tabela inteira.
 			// A restrição de busca é pelo codigo informado . Restrictions.idEq(codigo).
-			// Como quero um resultado unico usei: consulta.uniqueResult(), para muitos usase lista.
+			// Como quero um resultado unico usei: consulta.uniqueResult(), para muitos
+			// usase lista.
 			Criteria consulta = sessao.createCriteria(classe);
 			consulta.add(Restrictions.idEq(codigo));
 			Entidade resultado = (Entidade) consulta.uniqueResult();
 			return resultado;
 		} catch (RuntimeException erro) {
+			throw erro;
+		} finally {
+			sessao.close();
+		}
+	}
+
+	
+	/**
+	 * Método para excluir entidade persistida no banco de dados. 
+	 * @author Anderson Ferreira Canel
+	 * @param entidade
+	 * @exception Runtime Exception
+	 * @return void
+	 */
+	public void excluir(Entidade entidade) {
+		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
+		Transaction transacao = null;
+		try {
+			transacao = sessao.beginTransaction();
+			sessao.delete(entidade);
+			transacao.commit();
+		} catch (RuntimeException erro) {
+			if (transacao != null) {
+				transacao.rollback();
+			}
 			throw erro;
 		} finally {
 			sessao.close();
