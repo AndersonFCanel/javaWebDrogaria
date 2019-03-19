@@ -5,6 +5,8 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
 import br.com.drogaria.util.HibernateUtil;
 
 /**
@@ -35,6 +37,10 @@ public class GenericDAO<Entidade> {
 	 * @exception RuntimeException
 	 * @return void
 	 */
+
+	// Como estamos trabalhando com entidade suprimimos o Warning, pois o java
+	// reclama por não saber o tipo.
+
 	@SuppressWarnings("unchecked")
 	public GenericDAO() {
 		/// Explicando a linha abaixo
@@ -74,13 +80,22 @@ public class GenericDAO<Entidade> {
 		}
 	}
 
-	// Como estamos trabalhando com entidade suprimimos o Warning, pois o java
-	// reclama por não saber o tipo.
+	/**
+	 * Método para salvar informações no banco de dados. É aberta uma sessão e então
+	 * ocorre a tentativa de salvar o objeto genérico.
+	 * 
+	 * @author Anderson Ferreira Canel
+	 * @param entidade
+	 * @exception RuntimeException
+	 * @return void
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Entidade> listar() {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 
 		try {
+			// Explicando a linha abaixo:
+			// Criteria n é o critério da consulta, nesse caso tratase da tabela inteira.
 			Criteria consulta = sessao.createCriteria(classe);
 			List<Entidade> resultado = consulta.list();
 			return resultado;
@@ -92,4 +107,23 @@ public class GenericDAO<Entidade> {
 
 	}
 
+	@SuppressWarnings("unchecked")
+	public Entidade buscar(Long codigo) {
+		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
+
+		try {
+			// Explicando o TRECHO abaixo:
+			// Criteria n é o critério da consulta, nesse caso tratase da tabela inteira.
+			// A restrição de busca é pelo codigo informado . Restrictions.idEq(codigo).
+			// Como quero um resultado unico usei: consulta.uniqueResult(), para muitos usase lista.
+			Criteria consulta = sessao.createCriteria(classe);
+			consulta.add(Restrictions.idEq(codigo));
+			Entidade resultado = (Entidade) consulta.uniqueResult();
+			return resultado;
+		} catch (RuntimeException erro) {
+			throw erro;
+		} finally {
+			sessao.close();
+		}
+	}
 }

@@ -10,16 +10,15 @@ import br.com.drogaria.domain.Estado;
 public class EstadaoDAOTest {
 	@Test
 	@Ignore
-	public void salvar(){
+	public void salvar() {
 		Estado estado = new Estado();
 		estado.setNome("Rio Grande do Sul");
 		estado.setSigla("RS");
-		
+
 		EstadoDAO estadoDAO = new EstadoDAO();
 		estadoDAO.salvar(estado);
 	}
-	
-	
+
 	@Test
 	public void listar() {
 		EstadoDAO estadoDAO = new EstadoDAO();
@@ -31,5 +30,21 @@ public class EstadaoDAOTest {
 			System.out.println(estado.getCodigo() + " - " + estado.getSigla() + " - " + estado.getNome());
 		}
 		System.out.println("\n");
+	}
+
+	@Test
+	public void buscar() {
+		Long codigo = 2L;
+
+		EstadoDAO estadoDAO = new EstadoDAO();
+		Estado estado = estadoDAO.buscar(codigo);
+
+		if (estado == null) {
+			System.out.println("Nenhum estado encontrado. ");
+		} else {
+			System.out.println("LISTA DE RESULTADOS: ");
+			System.out.println(estado.getCodigo() + " - " + estado.getSigla() + " - " + estado.getNome());
+			System.out.println("\n");
+		}
 	}
 }
