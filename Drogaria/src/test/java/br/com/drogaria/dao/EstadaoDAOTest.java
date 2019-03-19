@@ -66,4 +66,25 @@ public class EstadaoDAOTest {
 		}
 	}
 
+	@Test
+	public void editar() {
+		Long codigo = 1L;
+		EstadoDAO estadoDAO = new EstadoDAO();
+		Estado estado = estadoDAO.buscar(codigo);
+
+		if (estado == null) {
+			System.out.println("Nenhum registro encontrado");
+		} else {
+			System.out.println("Registro editado - Antes:");
+			System.out.println(estado.getCodigo() + " - " + estado.getSigla() + " - " + estado.getNome());
+
+			estado.setNome("Santa Catarina");
+			estado.setSigla("SC");
+			estadoDAO.editar(estado);
+
+			System.out.println("Registro editado - Depois:");
+			System.out.println(estado.getCodigo() + " - " + estado.getSigla() + " - " + estado.getNome());
+		}
+	}
+
 }
