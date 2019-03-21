@@ -8,10 +8,9 @@ import org.junit.Test;
 import br.com.drogaria.domain.Cidade;
 import br.com.drogaria.domain.Estado;
 
-
 //Observações:
-// No caso de trabalhar com FK, essa deve ser buscada, para que se passe um
-// objeto estado em cidade.setEstado(estado);
+// No caso de trabalhar com FK. A cidade é uma COMPISIÇÃO COM ESTADO.
+//O ID do estado deve ser buscado antes, para que se passo ter um objeto estado;
 
 public class CidadeDAOTest {
 	@Test
@@ -53,6 +52,60 @@ public class CidadeDAOTest {
 		CidadeDAO cidadeDAO = new CidadeDAO();
 		Cidade cidade = cidadeDAO.buscar(codigo);
 
+		System.out.println("Código da Cidade: " + cidade.getCodigo());
+		System.out.println("Nome da Cidade: " + cidade.getNome());
+		System.out.println("Código do Estado: " + cidade.getEstado().getCodigo());
+		System.out.println("Sigla do Estado: " + cidade.getEstado().getSigla());
+		System.out.println("Nome do Estado: " + cidade.getEstado().getNome());
+	}
+
+	@Test
+	@Ignore
+	public void excluir() {
+		Long codigo = 7L;
+
+		CidadeDAO cidadeDAO = new CidadeDAO();
+		Cidade cidade = cidadeDAO.buscar(codigo);
+
+		cidadeDAO.excluir(cidade);
+
+		System.out.println("Cidade Removida");
+		System.out.println("Código da Cidade: " + cidade.getCodigo());
+		System.out.println("Nome da Cidade: " + cidade.getNome());
+		System.out.println("Código do Estado: " + cidade.getEstado().getCodigo());
+		System.out.println("Sigla do Estado: " + cidade.getEstado().getSigla());
+		System.out.println("Nome do Estado: " + cidade.getEstado().getNome());
+	}
+
+	@Test
+	@Ignore
+	public void editar() {
+		Long codigoCidade = 6L;
+		Long codigoEstado = 11L;
+
+		EstadoDAO estadoDAO = new EstadoDAO();
+		Estado estado = estadoDAO.buscar(codigoEstado);
+
+		System.out.println("Código do Estado: " + estado.getCodigo());
+		System.out.println("Sigla do Estado: " + estado.getSigla());
+		System.out.println("Nome do Estado: " + estado.getNome());
+
+		CidadeDAO cidadeDAO = new CidadeDAO();
+		Cidade cidade = cidadeDAO.buscar(codigoCidade);
+
+		System.out.println("Cidade A Ser Editada");
+		System.out.println("Código da Cidade: " + cidade.getCodigo());
+		System.out.println("Nome da Cidade: " + cidade.getNome());
+		System.out.println("Código do Estado: " + cidade.getEstado().getCodigo());
+		System.out.println("Sigla do Estado: " + cidade.getEstado().getSigla());
+		System.out.println("Nome do Estado: " + cidade.getEstado().getNome());
+
+		cidade.setNome("Guarapuava");
+		cidade.setEstado(estado);
+
+		cidadeDAO.editar(cidade);
+
+		System.out.println("Cidade Editada");
 		System.out.println("Código da Cidade: " + cidade.getCodigo());
 		System.out.println("Nome da Cidade: " + cidade.getNome());
 		System.out.println("Código do Estado: " + cidade.getEstado().getCodigo());
