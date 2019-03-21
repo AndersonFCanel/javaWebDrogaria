@@ -1,3 +1,4 @@
+C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\dao\ProdutoDAO.java
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\dao\package-info.java
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\domain\Pessoa.java
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\domain\Produto.java
@@ -5,6 +6,7 @@ C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\dao\Fa
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\domain\Estado.java
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\domain\GenericDomain.java
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\domain\ItemVenda.java
+C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\dao\PessoaDAO.java
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\domain\Fabricante.java
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\domain\Venda.java
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\domain\Usuario.java
@@ -14,4 +16,5 @@ C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\dao\Es
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\domain\Funcionario.java
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\domain\Cliente.java
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\dao\CidadeDAO.java
+C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\dao\ClienteDAO.java
 C:\Users\ander\git\javaWebDrogaria\Drogaria\src\main\java\br\com\drogaria\domain\Cidade.java
