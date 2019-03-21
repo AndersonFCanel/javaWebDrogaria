@@ -9,6 +9,9 @@ import org.junit.Test;
 import br.com.drogaria.domain.Cliente;
 import br.com.drogaria.domain.Pessoa;
 
+//Oservações: 
+//Pegando a data do sistema: cliente.setDataCadastro(new Date());
+
 public class ClienteDAOTest {
 	@Test
 	@Ignore
